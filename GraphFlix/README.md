@@ -17,21 +17,21 @@ O sistema organiza as informações em um grafo, onde cada título (filme ou sé
 ## Screenshots
 
 ### Página inicial
-![Página inicial](/graphflix_app/static/imgs/paginaInicial.png)
+![Página inicial](/GraphFlix/graphflix_app/static/imgs/paginaInicial.png)
 ### Página recomendações
-![Página recomendações](/graphflix_app/static/imgs/recomendacoes1.png)
+![Página recomendações](/GraphFlix/graphflix_app/static/imgs/recomendacoes1.png)
 ### Página recomendações/Filmes
-![Página recomendações/Filmes](/graphflix_app/static/imgs/recomendacoesFilmes.png)
+![Página recomendações/Filmes](/GraphFlix/graphflix_app/static/imgs/recomendacoesFilmes.png)
 ### Página recomendações/Series
-![Página recomendações/Series](/graphflix_app/static/imgs/recomendacoesSeries.png)
+![Página recomendações/Series](/GraphFlix/graphflix_app/static/imgs/recomendacoesSeries.png)
 ### Página Perfil
-![Perfil](/graphflix_app/static/imgs/PaginaPerfil.png)
+![Perfil](/GraphFlix/graphflix_app/static/imgs/PaginaPerfil.png)
 ### Página Série
-![Pagina Serie](/graphflix_app/static/imgs/PaginaSeries.png)
+![Pagina Serie](/GraphFlix/graphflix_app/static/imgs/PaginaSeries.png)
 ### Visualização no neo4j relacionamento compartilha entre títulos e títulos (limite máximo de 1000 nós)
-![Relacionamento Compartilha](/graphflix_app/static/imgs/RelacionamentoCompartilha.png)
+![Relacionamento Compartilha](/GraphFlix/graphflix_app/static/imgs/RelacionamentoCompartilha.png)
 ### Visualização no neo4j relacionamento possui entre títulos e gêneros (limite máximo de 1000 nós)
-![Relacionamento Possui](/graphflix_app/static/imgs/RelacionamentoPossui.png)
+![Relacionamento Possui](/GraphFlix/graphflix_app/static/imgs/RelacionamentoPossui.png)
 
 ## Vídeo 
 Link do vídeo de apresentação: [https://www.youtube.com/watch?v=gtpkk-_SSHE](https://www.youtube.com/watch?v=gtpkk-_SSHE)
