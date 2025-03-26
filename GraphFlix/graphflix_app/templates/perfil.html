@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'head.html' %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8"/>
+    <title>GraphFlix :: Perfil</title>
+</head>
+<body>
+    {% include 'menu.html' %}
+    
+    <div class="painel-container" style="margin-top:5%">
+        <div class="painel" style="text-align: left;">
+            <div class="painel-header">Informações do usuário</div>
+            <div class="painel-body">
+                <p class="perfil-p"><strong>Nome de Usuário:</strong> {{ username }}</p>
+                <p class="perfil-p"><strong>Email:</strong> {{ email }}</p>
+                <p class="perfil-p"><strong>Nome Completo:</strong> {{ nome_completo }}</p>
+                <div style="text-align: right; padding: 10px;"><button class="btn"><a style="color: #fff;" href="{% url 'editar-perfil' %}">Editar perfil</a></button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de favoritos -->
+    <div style="display: block; margin-top: 30px;">
+        <h1 class="topico"><i class="far fa-heart"></i> Seus Favoritos</h1>
+        <div>
+            {% if favoritos %}
+                <div class="favoritos-list">
+                    {% for favorito in favoritos %}
+
+                        {% if favorito.titulo.tipo == "serie" %}
+                            <a href="{% url 'pagina_serie' url_slug=favorito.titulo.slug %}">
+                                <div class="container-titulos">
+                                    <img class="image" src="https://image.tmdb.org/t/p/original/{{ favorito.titulo.posterPath }}" alt="{{ favorito.titulo.titulo }} - Capa">
+                                    <div class="overlay">
+                                    <p>{{ favorito.titulo.titulo }}</p>
+                                    </div>
+                                </div>  
+                            </a>
+                        {% else %}
+                            <a href="{% url 'pagina_filme' url_slug=favorito.titulo.slug %}">
+                                <div class="container-titulos">
+                                    <img class="image" src="https://image.tmdb.org/t/p/original/{{ favorito.titulo.posterPath }}" alt="{{ favorito.titulo.titulo }} - Capa">
+                                    <div class="overlay">
+                                    <p>{{ favorito.titulo.titulo }}</p>
+                                    </div>
+                                </div>  
+                            </a>                            
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="text-align:center">Nenhum filme ou série favorito ainda.</p><br><br><br>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+</html>

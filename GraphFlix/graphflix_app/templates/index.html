@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    {% include 'head.html' %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8"/>
+    <title>GraphFlix</title>
+</head>
+<body>
+  {% include 'menu.html' %}
+
+
+
+
+  
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'imgs/banner-principal.png' %}" alt="First slide">
+      </div>
+      {% for serie in series %}
+        <div class="carousel-item">
+          <a href="{% url 'pagina_serie' url_slug=serie.titulo.slug %}">
+            <img class="d-block img-carrossel" src="https://image.tmdb.org/t/p/original/{{ serie.titulo.backdropPath }}" alt="{{ serie.titulo }}">
+          </a>
+          <div class="carousel-caption d-none d-md-block">
+            <a href="{% url 'pagina_serie' url_slug=serie.titulo.slug %}">
+              <h5>{{ serie.titulo }}</h5>
+              <p><i class="fa-regular fa-clock"></i> Qtd. temporadas: {{ serie.qtd_temporadas }}</p>
+              <p><i class="fa-regular fa-calendar"></i> {{ serie.titulo.dtLancamento }}</p>
+              <p>{{ serie.titulo.sinopse|truncatechars:150 }}</p>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      {% for filme in filmes %}
+        <div class="carousel-item">
+          <a href="{% url 'pagina_filme' url_slug=filme.titulo.slug %}">
+            <img class="d-block img-carrossel" src="https://image.tmdb.org/t/p/original/{{ filme.titulo.backdropPath }}" alt="{{ filme.titulo }}">
+          </a>
+          <div class="carousel-caption d-none d-md-block">
+            <a href="{% url 'pagina_filme' url_slug=filme.titulo.slug %}">
+              <h5>{{ filme.titulo }}</h5>
+              <p><i class="fa-regular fa-clock"></i> {{ filme.duracao }}m.</p>
+              <p><i class="fa-regular fa-calendar"></i> {{ filme.titulo.dtLancamento }}</p>
+              <p>{{ filme.titulo.sinopse|truncatechars:150 }}</p>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+
+  {% if user.is_authenticated %}
+  <div style="text-align: center; padding: 40px 10px 10px 0px;">  
+    <button class="btn">
+      <a href="{% url 'recomendacoes' %}" style="color: #fff;">Ver recomendações personalizadas</a>
+    </button>
+  </div>
+
+  
+  {% else %}
+  <br>
+    <p class="" style="text-align: center;">Faça <a href="{% url 'login' %}">login</a> e veja séries e filmes recomendados especialmente para você!</p>
+  {% endif %}
+
+
+
+
+
+
+  <div class="painel-titulos">
+    <h1 class="titulos-titulo">
+      Filmes 
+      <span><a class="ver-mais-titulos" href="{% url 'filmes' %}"><i class="fa-solid fa-angles-right"></i>Veja mais</a></span>
+    </h1>  
+      {% for filme in filmes|slice:":6" %}
+      <a href="{% url 'pagina_filme' url_slug=filme.titulo.slug %}">
+        <div class="container-titulos">
+          <img class="image" src="https://image.tmdb.org/t/p/original/{{ filme.titulo.posterPath }}" alt="{{ filme.titulo }} - Capa">
+          <div class="overlay">
+            <p>{{ filme.titulo.titulo }}</p>
+          </div>
+        </div>  
+      </a>
+      {% endfor %}
+  </div>
+
+  <div class="painel-titulos">
+    <h1 class="titulos-titulo">
+      Séries
+      <span><a class="ver-mais-titulos" href="{% url 'series' %}"><i class="fa-solid fa-angles-right"></i>Veja mais</a></span>
+    </h1> 
+      {% for serie in series|slice:":6" %}
+        <a href="{% url 'pagina_serie' url_slug=serie.titulo.slug %}">
+        <div class="container-titulos">
+          <img class="image" src="https://image.tmdb.org/t/p/original/{{ serie.titulo.posterPath }}" alt="{{ serie.titulo }} - Capa">
+          <div class="overlay">
+            <p>{{ serie.titulo }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}   
+  </div>   
+  <br><br>
+    {% include 'footer.html' %}
+</body>
+</html>
